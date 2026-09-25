@@ -1,0 +1,338 @@
+:root {
+  --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  --card-bg: #ffffff;
+  --text-main: #2c3e50;
+  --text-sub: #7f8c8d;
+  --primary: #5c2d91;
+  --primary-hover: #46206e;
+  --border-color: #e2e8f0;
+  --shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+/* DARK MODE VARIABLE OVERRIDES (Feature 5) */
+[data-theme="dark"] {
+  --bg-gradient: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+  --card-bg: #1f2937;
+  --text-main: #f9fafb;
+  --text-sub: #9ca3af;
+  --primary: #a78bfa;
+  --primary-hover: #c084fc;
+  --border-color: #374151;
+  --shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+body {
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: var(--bg-gradient);
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 0.4s ease;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 850px;
+  position: relative;
+}
+
+/* PREMIUM CARD & DASHBOARD DESIGN (Feature 1) */
+.card {
+  background: var(--card-bg);
+  padding: 40px;
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  transition: background 0.4s ease, transform 0.3s;
+  border: 1px solid var(--border-color);
+}
+
+.title {
+  color: var(--primary);
+  margin: 0 0 10px 0;
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.subtitle {
+  color: var(--text-sub);
+  margin-bottom: 30px;
+  font-size: 15px;
+}
+
+.input-group {
+  margin-bottom: 22px;
+  position: relative;
+}
+.input-group label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: var(--text-main);
+  font-size: 14px;
+}
+.input-group input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  font-size: 16px;
+  box-sizing: border-box;
+  background: transparent;
+  color: var(--text-main);
+  transition: 0.3s ease;
+}
+.input-group input:focus {
+  border-color: var(--primary);
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.2);
+}
+
+/* AUTO-SUGGESTION DROP-DOWN UI */
+.suggestion-box {
+  position: absolute;
+  width: 100%;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  max-height: 160px;
+  overflow-y: auto;
+  z-index: 1000;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+.suggestion-item {
+  padding: 12px 16px;
+  cursor: pointer;
+  color: var(--text-main);
+  transition: 0.2s;
+}
+.suggestion-item:hover {
+  background: var(--primary);
+  color: white;
+  font-weight: bold;
+}
+
+/* ANIMATED GLASSMORPHISM LOADER SYSTEM (Feature 4) */
+#loadingScreen {
+  padding: 60px 0;
+  text-align: center;
+}
+.medical-loader {
+  font-size: 60px;
+  animation: pulseHeart 1.5s infinite ease-in-out;
+  color: var(--primary);
+  margin-bottom: 20px;
+}
+@keyframes pulseHeart {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+#loadingScreen h3 {
+  color: var(--text-main);
+  margin: 10px 0;
+}
+#loadingScreen p {
+  color: var(--text-sub);
+  font-size: 14px;
+}
+
+/* BUTTON CONFIGURATIONS */
+.btn-primary {
+  width: 100%;
+  background: var(--primary);
+  color: white;
+  padding: 16px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.btn-primary:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+}
+
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 15px;
+  margin-bottom: 25px;
+}
+.result-header h2 {
+  color: var(--text-main);
+  margin: 0;
+}
+.btn-secondary {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.btn-secondary:hover {
+  background: #2563eb;
+}
+
+.result-box {
+  padding: 22px;
+  border-radius: 14px;
+  margin-bottom: 30px;
+  border-left: 6px solid;
+  font-size: 15px;
+  line-height: 1.6;
+}
+.result-box.safe {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: #10b981;
+  color: #047857;
+}
+.result-box.unsafe {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: #ef4444;
+  color: #b91c1c;
+}
+
+/* PREMIUM CARD-TABLE LAYOUT */
+.table-responsive {
+  overflow-x: auto;
+  margin-bottom: 30px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  background: var(--card-bg);
+}
+th,
+td {
+  padding: 16px;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 14px;
+  color: var(--text-main);
+}
+th {
+  background: rgba(0, 0, 0, 0.02);
+  font-weight: 700;
+  color: var(--text-sub);
+}
+.btn-back {
+  background: #9ca3af;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* LIVE ADVERSE EFFECT ALERT CARDS (openFDA powered) */
+.adverse-alert {
+  background: rgba(245, 158, 11, 0.08);
+  border-left: 5px solid #f59e0b;
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin-bottom: 14px;
+  color: var(--text-main);
+  font-size: 14px;
+  line-height: 1.6;
+}
+.adverse-alert strong {
+  color: #b45309;
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14.5px;
+}
+.adverse-alert p {
+  margin: 4px 0;
+}
+.adverse-alert-warning {
+  color: #b91c1c;
+}
+
+/* THEME TOGGLE SWITCH CONFIGS (Feature 5) */
+.theme-switch-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 15px;
+}
+.theme-switch {
+  display: inline-block;
+  height: 34px;
+  position: relative;
+  width: 60px;
+}
+.theme-switch input {
+  display: none;
+}
+.slider {
+  background-color: #ccc;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: 0.4s;
+  border-radius: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.slider:before {
+  background-color: white;
+  bottom: 4px;
+  content: "";
+  height: 26px;
+  left: 4px;
+  position: absolute;
+  transition: 0.4s;
+  width: 26px;
+  border-radius: 50%;
+  z-index: 2;
+}
+input:checked + .slider {
+  background-color: #6b21a8;
+}
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+.mode-icon {
+  font-size: 14px;
+  margin-left: auto;
+  margin-right: 8px;
+  transition: 0.3s;
+}
+
+@media print {
+  body {
+    background: white;
+  }
+  .btn-back,
+  .theme-switch-wrapper,
+  .btn-secondary {
+    display: none !important;
+  }
+  .card {
+    border: none;
+    box-shadow: none;
+    padding: 0;
+  }
+}
