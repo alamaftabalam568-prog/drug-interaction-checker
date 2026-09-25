@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drug Interaction Checker</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body>
+
+    <div class="app-container">
+
+      <div class="theme-switch-wrapper">
+        <span class="mode-icon">🌙</span>
+        <label class="theme-switch">
+          <input type="checkbox" id="checkbox" onchange="toggleDarkMode()">
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <div class="card">
+
+        <div id="inputPage">
+          <h1 class="title">⚕️ Drug Interaction Checker</h1>
+          <p class="subtitle">Apni dawaiyon ke naam daalein aur live cross-check karein</p>
+
+          <div class="input-group">
+            <label for="drug1">Dawai 1 *</label>
+            <input type="text" id="drug1" autocomplete="off" placeholder="e.g. Paracetamol" oninput="showSuggestions(this, 'suggestionBox1')">
+            <div class="suggestion-box" id="suggestionBox1"></div>
+          </div>
+
+          <div class="input-group">
+            <label for="drug2">Dawai 2 *</label>
+            <input type="text" id="drug2" autocomplete="off" placeholder="e.g. Alcohol" oninput="showSuggestions(this, 'suggestionBox2')">
+            <div class="suggestion-box" id="suggestionBox2"></div>
+          </div>
+
+          <div class="input-group">
+            <label for="drug3">Dawai 3 (optional)</label>
+            <input type="text" id="drug3" autocomplete="off" placeholder="e.g. Milk" oninput="showSuggestions(this, 'suggestionBox3')">
+            <div class="suggestion-box" id="suggestionBox3"></div>
+          </div>
+
+          <button class="btn-primary" onclick="analyzePrescription()">🔍 Check Interaction</button>
+
+          <p style="text-align:center; font-size:12px; color:var(--text-sub); margin-top:18px;">
+            ⓘ Yeh tool sirf informational purpose ke liye hai aur professional medical advice ka substitute nahi hai.
+          </p>
+        </div>
+
+        <div id="loadingScreen" style="display: none;">
+          <div class="loader-content">
+            <div class="pulse-ring"></div>
+            <div class="medical-loader">⚕️</div>
+            <h3>Connecting Live Medical Database...</h3>
+            <p>Cross-checking combinations across global molecular indexes</p>
+          </div>
+        </div>
+
+        <div id="resultPage" style="display: none;">
+          <div class="result-header">
+            <h2>📊 Live Monograph Report</h2>
+            <button class="btn-secondary" onclick="downloadPDF()">📥 Save PDF Report</button>
+          </div>
+
+          <div id="statusResult" class="result-box"></div>
+
+          <div id="adverseAlertsContainer"></div>
+
+          <h3>📋 Pharmacological Guidelines & Suffix Mapping</h3>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Substance Name</th>
+                  <th>Clinical Route</th>
+                  <th>Frequency</th>
+                  <th>Therapeutic Indications</th>
+                  <th>Adverse Drug Reactions</th>
+                </tr>
+              </thead>
+              <tbody id="tableBody">
+              </tbody>
+            </table>
+          </div>
+
+          <button class="btn-back" onclick="clearAll()">← Back to Dashboard</button>
+        </div>
+
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+
+</html>
